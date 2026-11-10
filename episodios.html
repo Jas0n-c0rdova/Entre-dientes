@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Episodios — Entre Dientes</title>
+<meta name="description" content="Escucha los episodios de Entre Dientes y vota por el próximo relato.">
+<link rel="icon" href="logo-rojo-chico.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="cabecera"></div>
+<main id="contenido">
+<section class="wrap portada-pagina">
+  <p class="miga"><a href="index.html">Inicio</a> / Episodios</p>
+  <h1><span class="degradado">Episodios</span></h1>
+  <p>Veinticinco relatos ya abrieron su puerta. Publicamos uno nuevo cada martes a las 9 de la noche.</p>
+  <div class="botones">
+    <a class="btn-vidrio" data-plataforma="Spotify" href="#">Spotify</a>
+    <a class="btn-vidrio" data-plataforma="YouTube" href="#">YouTube</a>
+    <a class="btn-vidrio" data-plataforma="Apple Podcasts" href="#">Apple Podcasts</a>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="ultimo-titulo">
+  <div class="seccion-cab">
+    <h2 id="ultimo-titulo">El más reciente</h2>
+    <p>Publicado el martes 10 de noviembre. Una familia acampa cerca de Chosica y, toda la noche, alguien juega con la linterna fuera de la carpa.</p>
+  </div>
+  <div class="tarjeta reproductor" data-duracion="2478">
+    <!-- Demostración: para el episodio real, reemplaza este bloque por el código «Insertar» de Spotify o YouTube -->
+    <button type="button" class="play" aria-label="Reproducir episodio">
+      <svg class="icono-play" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 4l12 8-12 8z"/></svg>
+      <svg class="icono-pausa" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    </button>
+    <div class="rep-info">
+      <div class="rep-fila"><span class="rep-titulo">Episodio 25: La niña de la quebrada</span><span class="rep-tiempo"><span>00:00</span> / 41:18</span></div>
+      <div class="barra"><i></i></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap seccion" aria-labelledby="todos-titulo">
+  <div class="seccion-cab"><h2 id="todos-titulo">Episodios anteriores</h2></div>
+  <div class="lista">
+    <article><div class="ep-num">Episodio 24<span>3 de noviembre, 38 min</span></div><div class="ep-texto"><h3>El último turno del pabellón 3</h3><p>Una técnica de enfermería escucha que la llaman desde una cama que lleva semanas vacía.</p></div><a href="#">Escuchar</a></article>
+    <article><div class="ep-num">Episodio 23<span>27 de octubre, 44 min</span></div><div class="ep-texto"><h3>La casona de Barranco</h3><p>Cinco amigos alquilan una casona para una fiesta. Uno de ellos jura que llegaron cuatro.</p></div><a href="#">Escuchar</a></article>
+    <article><div class="ep-num">Episodio 22<span>20 de octubre, 36 min</span></div><div class="ep-texto"><h3>Kilómetro 87</h3><p>Un camionero de la Panamericana Norte recoge a una mujer que le pide bajar donde no hay nada.</p></div><a href="#">Escuchar</a></article>
+    <article><div class="ep-num">Episodio 21<span>13 de octubre, 33 min</span></div><div class="ep-texto"><h3>La abuela sigue cocinando</h3><p>Tres meses después del velorio, la cocina todavía huele a su caldo cada domingo.</p></div><a href="#">Escuchar</a></article>
+    <article><div class="ep-num">Episodio 20<span>6 de octubre, 39 min</span></div><div class="ep-texto"><h3>El ascensor del piso 13</h3><p>En un edificio de Miraflores que no tiene piso 13, el ascensor se detiene en él.</p></div><a href="#">Escuchar</a></article>
+    <article><div class="ep-num">Episodio 19<span>29 de septiembre, 47 min</span></div><div class="ep-texto"><h3>Lo que se escucha en la mina</h3><p>Un minero de Cerro de Pasco cuenta por qué nadie trabaja solo en el nivel más profundo.</p></div><a href="#">Escuchar</a></article>
+  </div>
+</section>
+
+<section class="wrap" id="votar" aria-labelledby="votar-titulo" style="padding-bottom:48px">
+  <div class="seccion-cab">
+    <span class="pildora">Votación abierta</span>
+    <h2 id="votar-titulo">Elige el próximo relato</h2>
+    <p id="voto-mensaje">Tres relatos esperan turno y ya van 312 votos. Tú decides cuál narramos el próximo martes.</p>
+  </div>
+  <div class="opciones">
+    <button type="button" class="opcion" data-id="a" data-votos="142" aria-pressed="false"><span class="t">La señora del último paradero</span><span class="r">Un cobrador de combi recuerda a la pasajera que nunca bajó.</span><span class="e">Votar por este relato</span></button>
+    <button type="button" class="opcion" data-id="b" data-votos="97" aria-pressed="false"><span class="t">El cuarto que nadie alquila</span><span class="r">Una pensión barata, una habitación con la cama siempre tendida.</span><span class="e">Votar por este relato</span></button>
+    <button type="button" class="opcion" data-id="c" data-votos="73" aria-pressed="false"><span class="t">Lo que respondió el walkie-talkie</span><span class="r">Dos hermanos juegan de noche. Del otro lado contesta una tercera voz.</span><span class="e">Votar por este relato</span></button>
+  </div>
+</section>
+
+<section class="wrap siguiente" aria-labelledby="sigue-titulo">
+  <h2 id="sigue-titulo">Sigue explorando</h2>
+  <div class="puertas">
+    <a class="acceso" href="relatos.html"><h3>Envía tu relato</h3><p>Cuéntanos lo que viviste. Te explicamos cómo mandarlo y qué hacemos con él.</p><span class="ir">Abrir esta puerta <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="acceso" href="nosotros.html"><h3>Quiénes somos</h3><p>Las voces detrás de Entre Dientes y por qué contamos estas historias.</p><span class="ir">Conócenos <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  </div>
+</section>
+</main>
+<div id="pie"></div>
+<script src="main.js"></script>
+</body>
+</html>
