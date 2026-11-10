@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entre Dientes — podcast de terror</title>
+<meta name="description" content="Entre Dientes es un podcast de relatos de terror reales. Envía tu historia por WhatsApp.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pirata+One&family=IM+Fell+English:ital@0;1&display=swap">
+<style>
+:root{
+  --negro:#070607; --panel:#120A0D; --linea:#2A1218; --borde:#5A2C35;
+  --vino:#5E1120; --vino-oscuro:#3A0A14; --vino-claro:#C24A5E; --rosa:#E39AA6; --rosa-suave:#F1DCDF;
+  --hueso:#F3EEE7; --texto:#E9E3DA; --gris:#C9C1B8; --gris2:#B9B1A8; --gris3:#9A9198;
+  --display:'Pirata One','Old English Text MT',serif;
+  --serif:'IM Fell English',Georgia,'Times New Roman',serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--negro);color:var(--texto);font-family:var(--serif);font-size:19px;line-height:1.6}
+a{color:var(--rosa)} a:hover{color:#F4C9D0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--rosa);outline-offset:4px}
+img{max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px}
+h1,h2{font-family:var(--display);font-weight:400;color:var(--hueso);margin:0}
+h2{font-size:clamp(36px,4vw,52px);line-height:1.1}
+h3{font-weight:400;margin:0 0 8px;color:var(--hueso);font-size:23px}
+p{margin:0}
+.btn{display:inline-block;background:var(--vino);color:var(--hueso);text-decoration:none;padding:15px 28px;font-size:20px;border-radius:2px}
+.btn:hover{color:#fff;background:#6E1423}
+.btn-linea{display:inline-block;border:1px solid var(--borde);color:var(--texto);text-decoration:none;padding:14px 28px;font-size:20px;border-radius:2px}
+
+/* Navegación */
+header{border-bottom:1px solid var(--linea)}
+nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding-top:18px;padding-bottom:18px}
+.marca{font-family:var(--display);font-size:30px;color:var(--hueso);text-decoration:none}
+.menu{display:flex;flex-wrap:wrap;align-items:center;gap:8px 28px}
+.menu a{color:var(--gris);text-decoration:none;padding:10px 0}
+.menu a.btn{color:var(--hueso);padding:11px 22px;font-size:19px}
+
+/* Portada */
+.hero{display:flex;flex-wrap:wrap;align-items:center;gap:40px 64px;padding-top:56px;padding-bottom:88px}
+.hero-texto{flex:1 1 460px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.hero h1{font-size:clamp(48px,6vw,84px);line-height:1.02}
+.hero-texto>p{max-width:34em;color:var(--gris);font-size:21px}
+.botones{display:flex;flex-wrap:wrap;gap:14px;padding-top:8px}
+.hero-puerta{flex:1 1 380px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.puerta{position:relative;width:100%;max-width:440px;padding:0;border:0;background:transparent;cursor:pointer;perspective:1200px;font:inherit}
+.puerta img{display:block;width:100%;height:auto;transform-origin:38% 50%;transition:transform 700ms cubic-bezier(.2,.7,.2,1),filter 700ms;
+  -webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 48%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 60% 55% at 50% 48%,#000 62%,transparent 100%)}
+.puerta:hover img{filter:brightness(1.18)}
+.puerta.abierta img{transform:rotateY(-24deg) scale(.97);filter:brightness(.45)}
+.fragmento{position:absolute;left:8%;right:8%;top:28%;padding:22px 24px;background:rgba(7,6,7,.9);border:1px solid var(--borde);color:var(--hueso);font-style:italic;font-size:19px;line-height:1.55;text-align:left;opacity:0;transform:translateY(8px);transition:opacity 500ms 200ms,transform 500ms 200ms;pointer-events:none}
+.puerta.abierta .fragmento{opacity:1;transform:none}
+.pista{color:var(--gris3);font-style:italic;font-size:17px}
+
+/* Línea de relatos */
+.relatos{background:var(--vino);color:var(--hueso)}
+.relatos .wrap{display:flex;flex-wrap:wrap;gap:48px 72px;align-items:flex-start;padding-top:88px;padding-bottom:88px}
+.relatos-texto{flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.relatos-texto>p{color:var(--rosa-suave);max-width:30em}
+.numero{font-family:var(--display);font-size:clamp(44px,6.5vw,92px);line-height:1;color:#fff;text-decoration:none;padding:12px 0;word-break:break-word}
+.numero:hover{color:#fff;text-decoration:underline;text-decoration-thickness:2px}
+.aviso{margin-top:8px;max-width:32em;font-size:16px;line-height:1.55;border-top:1px solid rgba(255,255,255,.22);padding-top:16px}
+.aviso a{color:#fff}
+.pasos{flex:1 1 360px;min-width:0;margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:28px}
+.pasos li{display:flex;gap:20px;align-items:baseline}
+.pasos .n{font-family:var(--display);font-size:40px;line-height:1;color:#E8A9B3;min-width:28px}
+.pasos strong{display:block;font-weight:400;font-size:22px;color:#fff}
+.pasos span:not(.n){color:var(--rosa-suave)}
+
+/* Secciones */
+.nosotros{display:flex;flex-wrap:wrap;gap:40px 72px;padding-top:104px;padding-bottom:72px}
+.nosotros h2{flex:1 1 280px}
+.nosotros-texto{flex:2 1 520px;min-width:0;max-width:40em;display:flex;flex-direction:column;gap:22px;color:var(--gris2)}
+.nosotros-texto p:first-child{font-size:22px;color:var(--texto)}
+.divisor{height:1px;background:var(--linea)}
+
+.episodios{display:flex;flex-direction:column;gap:36px;padding-top:72px;padding-bottom:96px}
+.episodios-cabecera{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px}
+.plataformas{display:flex;flex-wrap:wrap;gap:8px 24px}
+.plataformas a{padding:10px 0}
+.reproductor{background:var(--panel);border:1px solid var(--linea);padding:28px;display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px}
+.play{flex:0 0 auto;width:72px;height:72px;border-radius:50%;border:0;background:var(--vino);color:var(--hueso);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.play:hover{background:#6E1423}
+.play .icono-pausa{display:none}
+.play.sonando .icono-pausa{display:block}
+.play.sonando .icono-play{display:none}
+.rep-info{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.rep-fila{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px}
+.rep-titulo{font-size:24px;color:var(--hueso)}
+.rep-tiempo{color:var(--gris3);font-size:16px}
+.barra{height:4px;background:var(--linea);position:relative}
+.barra i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--vino-claro)}
+.lista article{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 32px;padding:26px 0;border-top:1px solid var(--linea)}
+.lista article:last-child{border-bottom:1px solid var(--linea)}
+.ep-num{flex:0 0 120px;color:var(--gris3);font-style:italic}
+.ep-texto{flex:1 1 420px;min-width:0}
+.ep-texto h3{font-size:26px;margin-bottom:4px}
+.ep-texto p{color:var(--gris2)}
+.lista article>a{flex:0 0 auto;padding:10px 0}
+
+.votar{display:flex;flex-direction:column;gap:28px;padding-bottom:96px}
+.votar-cab{display:flex;flex-direction:column;gap:8px}
+.votar-cab p{color:var(--gris2);max-width:34em}
+.opciones{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.opcion{text-align:left;padding:26px 24px;background:var(--panel);border:1px solid var(--linea);color:var(--hueso);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:10px;transition:background 250ms,border-color 250ms}
+.opcion:hover{border-color:var(--borde)}
+.opcion[aria-pressed="true"]{background:var(--vino-oscuro);border-color:var(--vino-claro)}
+.opcion .t{font-size:25px;line-height:1.25}
+.opcion .r{color:var(--gris)}
+.opcion .e{color:var(--rosa);font-style:italic;font-size:16px}
+
+.reglas{background:var(--panel);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.reglas .wrap{display:flex;flex-direction:column;gap:40px;padding-top:88px;padding-bottom:88px}
+.rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:36px 48px}
+.rejilla p{color:var(--gris2)}
+
+.privacidad{display:flex;flex-wrap:wrap;gap:40px 72px;padding-top:96px;padding-bottom:72px}
+.privacidad-cab{flex:1 1 280px;display:flex;flex-direction:column;gap:14px}
+.privacidad-cab p{color:var(--gris3);font-size:16px}
+.privacidad .rejilla{flex:2 1 520px;min-width:0;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px 44px}
+
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px 48px;padding-top:64px;padding-bottom:48px}
+.pie-marca{display:flex;flex-direction:column;gap:6px}
+.pie-marca strong{font-family:var(--display);font-weight:400;font-size:34px;color:var(--hueso)}
+.pie-marca span{color:var(--gris3);font-style:italic}
+.pie-cols{display:flex;flex-wrap:wrap;gap:32px 56px}
+.pie-col{display:flex;flex-direction:column;gap:4px}
+.pie-col>span{color:var(--gris3)}
+.pie-col div{display:flex;flex-wrap:wrap;gap:4px 18px}
+.legal{flex:1 1 100%;margin-top:16px;padding-top:24px;border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;color:var(--gris3);font-size:16px}
+
+/* Linterna */
+.oscuridad{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:0;transition:opacity 600ms;
+  background:radial-gradient(circle 190px at var(--x,50%) var(--y,50%),rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.97) 100%)}
+body.apagado .oscuridad{opacity:1}
+.luces{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;align-items:center;gap:10px;padding:12px 20px;min-height:48px;background:var(--negro);color:var(--hueso);border:1px solid #7A3340;border-radius:999px;font:inherit;font-size:17px;cursor:pointer;box-shadow:0 0 24px rgba(94,17,32,.55)}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap" aria-label="Principal">
+    <a class="marca" href="#inicio">Entre Dientes</a>
+    <div class="menu">
+      <a href="#nosotros">Quiénes somos</a>
+      <a href="#episodios">Episodios</a>
+      <a href="#reglas">Antes de enviar</a>
+      <a class="btn" href="#relatos">Envía tu relato</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section id="inicio" class="wrap hero">
+  <div class="hero-texto">
+    <h1>Hay historias que solo se cuentan en voz baja.</h1>
+    <p>Entre Dientes es un podcast de relatos de terror reales, contados por quienes los vivieron. Cada semana abrimos una puerta distinta. La tuya puede ser la siguiente.</p>
+    <div class="botones">
+      <a class="btn" href="#relatos">Envía tu relato</a>
+      <a class="btn-linea" href="#episodios">Escuchar episodios</a>
+    </div>
+  </div>
+  <div class="hero-puerta">
+    <button type="button" class="puerta" id="puerta" aria-pressed="false" aria-label="Abrir la puerta y leer un fragmento de un relato">
+      <img src="logo.png" alt="" width="620" height="1024">
+      <span class="fragmento">«Esa noche cerré con llave la puerta del fondo. Lo sé porque la llave seguía en mi mano. A las tres de la mañana, alguien del otro lado empezó a probar la manija.»</span>
+    </button>
+    <span class="pista" id="pista">Toca la puerta, si te atreves</span>
+  </div>
+</section>
+
+<section id="relatos" class="relatos" aria-labelledby="relatos-titulo">
+  <div class="wrap">
+    <div class="relatos-texto">
+      <h2 id="relatos-titulo" style="color:#F3EEE7">La línea está abierta</h2>
+      <p>Escríbenos o mándanos un audio por WhatsApp. Leemos todo, de día y, sobre todo, de noche.</p>
+      <a class="numero js-whatsapp" href="#"><span class="js-telefono"></span></a>
+      <p style="font-style:italic">También puedes escribirnos a [CORREO DE RELATOS]</p>
+      <p class="aviso">Al enviarnos tu relato nos autorizas a narrarlo en el podcast. Puedes pedir que lo contemos de forma anónima o que dejemos de usarlo cuando quieras. <a href="#privacidad">Cómo cuidamos tu relato</a></p>
+    </div>
+    <ol class="pasos">
+      <li><span class="n" aria-hidden="true">1</span><div><strong>Escribe al número</strong><span>Cuéntanos en un mensaje de qué trata tu historia y dónde ocurrió.</span></div></li>
+      <li><span class="n" aria-hidden="true">2</span><div><strong>Envía el relato completo</strong><span>En texto o en audio. Si es audio, búscate un lugar en silencio.</span></div></li>
+      <li><span class="n" aria-hidden="true">3</span><div><strong>Te avisamos antes de publicarlo</strong><span>Si tu relato entra en un episodio, te escribimos para confirmar los detalles.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="nosotros" class="wrap nosotros" aria-labelledby="nosotros-titulo">
+  <h2 id="nosotros-titulo">Quiénes somos</h2>
+  <div class="nosotros-texto">
+    <p>Somos [NOMBRES DE LOS CONDUCTORES], y empezamos Entre Dientes porque crecimos escuchando historias que los adultos contaban a medias, cuando creían que nadie estaba oyendo.</p>
+    <p>El podcast reúne relatos de aparecidos, casas que no quieren a sus dueños, carreteras de madrugada y todo aquello que no se puede explicar. No buscamos convencerte de nada: solo contarlo bien y con respeto por quien lo vivió.</p>
+    <p>[AÑADE AQUÍ CÓMO NACIÓ EL PROYECTO, DESDE CUÁNDO ESTÁ AL AIRE O DESDE DÓNDE GRABAN]</p>
+  </div>
+</section>
+
+<div class="wrap"><div class="divisor"></div></div>
+
+<section id="episodios" class="wrap episodios" aria-labelledby="episodios-titulo">
+  <div class="episodios-cabecera">
+    <h2 id="episodios-titulo">Últimos episodios</h2>
+    <div class="plataformas">
+      <a href="#">Spotify</a>
+      <a href="#">YouTube</a>
+      <a href="#">Apple Podcasts</a>
+    </div>
+  </div>
+
+  <!--
+    REPRODUCTOR: este es de demostración. Para que suene el episodio real,
+    reemplaza todo el bloque <div class="reproductor">…</div> por el código
+    "Insertar" que te da Spotify o YouTube (un <iframe>).
+  -->
+  <div class="reproductor">
+    <button type="button" class="play" id="play" aria-label="Reproducir episodio">
+      <svg class="icono-play" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 4l12 8-12 8z"/></svg>
+      <svg class="icono-pausa" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    </button>
+    <div class="rep-info">
+      <div class="rep-fila">
+        <span class="rep-titulo">Nuevo: [Título del último episodio]</span>
+        <span class="rep-tiempo"><span id="tiempo">00:00</span> / [DURACIÓN]</span>
+      </div>
+      <div class="barra"><i id="progreso"></i></div>
+    </div>
+  </div>
+
+  <div class="lista">
+    <article>
+      <span class="ep-num">Episodio [N]</span>
+      <div class="ep-texto"><h3>[Título del episodio]</h3><p>[Una línea que adelante la historia sin contar el final.]</p></div>
+      <a href="#">Escuchar</a>
+    </article>
+    <article>
+      <span class="ep-num">Episodio [N]</span>
+      <div class="ep-texto"><h3>[Título del episodio]</h3><p>[Una línea que adelante la historia sin contar el final.]</p></div>
+      <a href="#">Escuchar</a>
+    </article>
+    <article>
+      <span class="ep-num">Episodio [N]</span>
+      <div class="ep-texto"><h3>[Título del episodio]</h3><p>[Una línea que adelante la historia sin contar el final.]</p></div>
+      <a href="#">Escuchar</a>
+    </article>
+  </div>
+</section>
+
+<section id="votar" class="wrap votar" aria-labelledby="votar-titulo">
+  <div class="votar-cab">
+    <h2 id="votar-titulo">Elige el próximo relato</h2>
+    <p id="voto-mensaje">Tres relatos esperan turno. Tú decides cuál narramos en el próximo episodio.</p>
+  </div>
+  <div class="opciones">
+    <button type="button" class="opcion" data-id="a" aria-pressed="false"><span class="t">La señora del último paradero</span><span class="r">Un cobrador de combi recuerda a la pasajera que nunca bajó.</span><span class="e">Votar por este relato</span></button>
+    <button type="button" class="opcion" data-id="b" aria-pressed="false"><span class="t">El cuarto que nadie alquila</span><span class="r">Una pensión barata, una habitación con la cama siempre tendida.</span><span class="e">Votar por este relato</span></button>
+    <button type="button" class="opcion" data-id="c" aria-pressed="false"><span class="t">Lo que respondió el walkie-talkie</span><span class="r">Dos hermanos juegan de noche. Del otro lado contesta una tercera voz.</span><span class="e">Votar por este relato</span></button>
+  </div>
+</section>
+
+<section id="reglas" class="reglas" aria-labelledby="reglas-titulo">
+  <div class="wrap">
+    <h2 id="reglas-titulo">Antes de enviar tu relato</h2>
+    <div class="rejilla">
+      <div><h3>Tu nombre es tuyo</h3><p>Si prefieres el anonimato, dínoslo. Cambiamos nombres de personas y lugares cuando hace falta.</p></div>
+      <div><h3>Que sea tu historia</h3><p>Buscamos experiencias vividas por ti o por alguien cercano, no cuentos copiados de internet.</p></div>
+      <div><h3>Los detalles importan</h3><p>Cuándo pasó, dónde estabas, qué escuchaste. Lo pequeño es lo que más asusta.</p></div>
+      <div><h3>No todo se publica</h3><p>Recibimos muchos relatos. Si el tuyo no sale pronto, puede aparecer en un episodio más adelante.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="privacidad" class="wrap privacidad" aria-labelledby="privacidad-titulo">
+  <div class="privacidad-cab">
+    <h2 id="privacidad-titulo">Privacidad y uso de tu relato</h2>
+    <p>Responsable de los datos: [NOMBRE O RAZÓN SOCIAL], [CORREO DE CONTACTO]</p>
+  </div>
+  <div class="rejilla">
+    <div><h3>Qué recibimos</h3><p>Tu relato en texto o audio, tu número de WhatsApp o correo, y los datos que decidas contarnos.</p></div>
+    <div><h3>Para qué lo usamos</h3><p>Para leer tu historia, contactarte y narrarla en Entre Dientes y sus redes. No vendemos ni compartimos tus datos.</p></div>
+    <div><h3>Tu identidad</h3><p>Si pides anonimato, no decimos tu nombre ni nada que te identifique. Nunca publicamos tu voz sin tu permiso.</p></div>
+    <div><h3>Puedes retirarlo</h3><p>Escríbenos al mismo número o al correo y dejamos de usar tu relato y borramos tus datos de contacto.</p></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="pie-marca"><strong>Entre Dientes</strong><span>A Dark Odyssey</span></div>
+    <div class="pie-cols">
+      <div class="pie-col"><span>Relatos por WhatsApp</span><a class="js-whatsapp" href="#" style="text-decoration:none"><span class="js-telefono"></span></a></div>
+      <div class="pie-col"><span>Síguenos</span><div><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a></div></div>
+    </div>
+    <div class="legal"><span>© 2026 Entre Dientes. Escúchalo con las luces encendidas.</span><a href="#privacidad">Privacidad</a></div>
+  </div>
+</footer>
+
+<div class="oscuridad" id="oscuridad" aria-hidden="true"></div>
+<button type="button" class="luces" id="luces" aria-pressed="false">
+  <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>
+  <span id="luces-texto">Apagar las luces</span>
+</button>
+
+<script>
+/* ===== CAMBIA AQUÍ TU NÚMERO DE WHATSAPP ===== */
+const TELEFONO = '+51 [TU NÚMERO]';
+const DIA_ANUNCIO = '[DÍA DEL ANUNCIO]';
+/* ============================================= */
+
+// Número en toda la página
+document.querySelectorAll('.js-telefono').forEach(el => el.textContent = TELEFONO);
+document.querySelectorAll('.js-whatsapp').forEach(a => a.href = 'https://wa.me/' + TELEFONO.replace(/\D/g, ''));
+
+// La puerta que se abre
+const puerta = document.getElementById('puerta');
+const pista = document.getElementById('pista');
+puerta.addEventListener('click', () => {
+  const abierta = puerta.classList.toggle('abierta');
+  puerta.setAttribute('aria-pressed', abierta);
+  pista.textContent = abierta ? 'Toca otra vez para cerrarla' : 'Toca la puerta, si te atreves';
+});
+
+// Reproductor de demostración
+const play = document.getElementById('play');
+const tiempo = document.getElementById('tiempo');
+const progreso = document.getElementById('progreso');
+const DURACION = 1800;
+let seg = 0, timer = null;
+function pintar() {
+  tiempo.textContent = String(Math.floor(seg / 60)).padStart(2, '0') + ':' + String(seg % 60).padStart(2, '0');
+  progreso.style.width = (seg / DURACION * 100) + '%';
+}
+play.addEventListener('click', () => {
+  if (timer) {
+    clearInterval(timer); timer = null;
+    play.classList.remove('sonando'); play.setAttribute('aria-label', 'Reproducir episodio');
+  } else {
+    timer = setInterval(() => { seg = (seg + 1) % DURACION; pintar(); }, 1000);
+    play.classList.add('sonando'); play.setAttribute('aria-label', 'Pausar episodio');
+  }
+});
+
+// Votación (se recuerda en el navegador de cada visitante)
+const opciones = document.querySelectorAll('.opcion');
+const votoMensaje = document.getElementById('voto-mensaje');
+function marcarVoto(id) {
+  opciones.forEach(op => {
+    const elegida = op.dataset.id === id;
+    op.setAttribute('aria-pressed', elegida);
+    op.querySelector('.e').textContent = elegida ? 'Tu voto' : 'Votar por este relato';
+    if (elegida) votoMensaje.textContent = 'Votaste por «' + op.querySelector('.t').textContent + '». Anunciamos el relato ganador el ' + DIA_ANUNCIO + '.';
+  });
+}
+opciones.forEach(op => op.addEventListener('click', () => {
+  marcarVoto(op.dataset.id);
+  try { localStorage.setItem('entre-dientes-voto', op.dataset.id); } catch (e) {}
+}));
+try { const guardado = localStorage.getItem('entre-dientes-voto'); if (guardado) marcarVoto(guardado); } catch (e) {}
+
+// Apagar las luces: linterna que sigue al cursor o al dedo
+const luces = document.getElementById('luces');
+const lucesTexto = document.getElementById('luces-texto');
+const oscuridad = document.getElementById('oscuridad');
+luces.addEventListener('click', () => {
+  const apagado = document.body.classList.toggle('apagado');
+  luces.setAttribute('aria-pressed', apagado);
+  lucesTexto.textContent = apagado ? 'Encender las luces' : 'Apagar las luces';
+});
+function moverLinterna(x, y) {
+  oscuridad.style.setProperty('--x', x + 'px');
+  oscuridad.style.setProperty('--y', y + 'px');
+}
+window.addEventListener('mousemove', e => moverLinterna(e.clientX, e.clientY));
+window.addEventListener('touchmove', e => { if (e.touches[0]) moverLinterna(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+window.addEventListener('touchstart', e => { if (e.touches[0]) moverLinterna(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+</script>
+</body>
+</html>
